@@ -26,8 +26,8 @@ namespace Sample.Twitch.Components
         /// <exception cref="ArgumentException"></exception>
         public Task Send(SendContext<T> context, IPipe<SendContext<T>> next)
         {
-            if (context.Message is SubmitOrder getOrderStatus && getOrderStatus.Equals(Guid.Empty))
-                throw new ArgumentException("The OrderId must not be empty");
+            if (context.Message is SubmitOrder orderMessage && orderMessage.CustomerName.Contains("TEST"))
+                throw new ArgumentException("The CUSTOMERNAME must not be TEST");
 
             return next.Send(context);
         }
